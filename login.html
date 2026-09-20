@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0d6efd">
+<title>Вход — Климат Комфорт</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-wrap">
+  <div class="auth-box">
+    <h2 id="authTitle">Вход</h2>
+    <div class="error" id="error"></div>
+    <input type="text" id="username" placeholder="Логин" autocomplete="username">
+    <input type="text" id="name" placeholder="Ваше имя (для регистрации)" style="display:none" autocomplete="name">
+    <input type="password" id="password" placeholder="Пароль" autocomplete="current-password">
+    <button id="authBtn">Войти</button>
+    <div class="auth-switch">
+      <span id="switchText">Нет аккаунта?</span>
+      <a id="switchLink">Зарегистрироваться</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
+<script>
+let mode = 'login';
+
+document.getElementById('switchLink').onclick = () => {
+  mode = mode === 'login' ? 'register' : 'login';
+  document.getElementById('authTitle').innerText = mode === 'login' ? 'Вход' : 'Регистрация';
+  document.getElementById('authBtn').innerText = mode === 'login' ? 'Войти' : 'Зарегистрироваться';
+  document.getElementById('switchText').innerText = mode === 'login' ? 'Нет аккаунта?' : 'Уже есть аккаунт?';
+  document.getElementById('switchLink').innerText = mode === 'login' ? 'Зарегистрироваться' : 'Войти';
+  document.getElementById('name').style.display = mode === 'register' ? 'block' : 'none';
+  document.getElementById('error').innerText = '';
+};
+
+document.getElementById('authBtn').onclick = () => {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+  const name = document.getElementById('name').value.trim();
+  const err = document.getElementById('error');
+  err.innerText = '';
+
+  if (!username || !password) { err.innerText = 'Заполните все поля'; return; }
+
+  if (mode === 'login') {
+    const res = login(username, password);
+    if (!res.ok) { err.innerText = res.error; return; }
+    location.href = res.user.role === 'admin' ? 'admin.html' : 'index.html';
+  } else {
+    if (!name) { err.innerText = 'Введите имя'; return; }
+    const res = register(username, password, name);
+    if (!res.ok) { err.innerText = res.error; return; }
+    login(username, password);
+    location.href = 'index.html';
+  }
+};
+
+document.getElementById('password').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') document.getElementById('authBtn').click();
+});
+</script>
+</body>
+</html>

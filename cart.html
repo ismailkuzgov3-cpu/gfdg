@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+<meta name="theme-color" content="#1a1d29">
+<title>Корзина — Климат Комфорт</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">🔥 Климат <span>Комфорт</span></div>
+  <div class="nav-links" id="navLinks"></div>
+</header>
+
+<div class="cart-page">
+  <h1>🛒 Ваша корзина</h1>
+  <div id="cartItems"></div>
+
+  <div class="cart-summary" id="cartSummary" style="display:none;">
+    <h3>Оформление заказа</h3>
+
+    <div class="summary-row">
+      <span>Сумма товаров:</span>
+      <span id="subtotal" class="strike">0 ₽</span>
+    </div>
+
+    <div class="summary-row discount-row">
+      <span>🎁 Скидка 5% <small>за заказ онлайн</small>:</span>
+      <span id="discount">−0 ₽</span>
+    </div>
+
+    <div class="promo-block">
+      <input type="text" id="promoInput" placeholder="Введите промокод" autocomplete="off">
+      <button onclick="applyPromo()">Применить</button>
+    </div>
+    <div class="promo-msg" id="promoMsg"></div>
+
+    <div class="summary-row promo-row" id="promoRow" style="display:none;">
+      <span>🎟️ Промокод <span id="promoCode"></span>:</span>
+      <span id="promoDiscount">−0 ₽</span>
+    </div>
+
+    <div class="total-row">
+      <span>ИТОГО:</span>
+      <span id="cartTotal">0 ₽</span>
+    </div>
+
+    <p class="savings">
+      ✨ Вы экономите <b id="savings">0 ₽</b> —<br>
+      благодаря онлайн-заказу и промокодам!
+    </p>
+
+    <button class="whatsapp-btn" onclick="sendToWhatsApp()">
+      📱 Отправить заказ в WhatsApp
+    </button>
+  </div>
+</div>
+
+<nav class="mobile-bottom-bar" id="mobileBar"></nav>
+
+<script src="js/products.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/profile.js"></script>
+
+</body>
+</html>

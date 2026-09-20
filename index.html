@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+<meta name="theme-color" content="#1a1d29">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Климат Комфорт — всё для отопления. Котлы, радиаторы, насосы, трубы.">
+<title>Климат Комфорт — Магазин отопления</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">🔥 Климат <span>Комфорт</span></div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Поиск товара..." inputmode="search" autocomplete="off">
+    <button onclick="doSearch()" aria-label="Найти">🔍</button>
+  </div>
+  <div class="nav-links" id="navLinks"></div>
+</header>
+
+<section class="hero">
+  <h1>Всё для отопления вашего дома</h1>
+  <p>Котлы • Радиаторы • Насосы • Трубы • Автоматика</p>
+</section>
+
+<div class="categories" id="categories"></div>
+
+<!-- ФИЛЬТРЫ -->
+<div class="filters-wrap">
+  <div class="filters-box">
+    <div class="filters-row">
+      <select id="sortSelect" class="filter-select" onchange="applyFilters()">
+        <option value="">Сортировка: по умолчанию</option>
+        <option value="price-asc">Цена: дешёвые → дорогие</option>
+        <option value="price-desc">Цена: дорогие → дешёвые</option>
+        <option value="name-asc">Название: А → Я</option>
+        <option value="discount">Сначала со скидкой</option>
+      </select>
+
+      <label class="filter-checkbox">
+        <input type="checkbox" id="onlyDiscount" onchange="applyFilters()">
+        <span>🎁 Только со скидкой</span>
+      </label>
+    </div>
+
+    <div class="filters-row">
+      <div class="price-range">
+        <label>Цена:</label>
+        <input type="number" id="priceMin" placeholder="от" inputmode="numeric" oninput="applyFilters()">
+        <span>—</span>
+        <input type="number" id="priceMax" placeholder="до" inputmode="numeric" oninput="applyFilters()">
+      </div>
+
+      <button class="filters-reset" onclick="resetFilters()">✕ Сбросить</button>
+    </div>
+  </div>
+</div>
+
+<div class="calc-wrap">
+  <div class="calc-box">
+    <h3>🧮 Калькулятор мощности котла</h3>
+    <div class="calc-row">
+      <input type="number" id="areaInput" placeholder="Площадь дома (м²)" inputmode="numeric">
+      <button onclick="calcBoiler()">Рассчитать</button>
+    </div>
+    <p id="calcResult"></p>
+  </div>
+</div>
+
+<div class="products" id="productsGrid"></div>
+
+<!-- ПЛАВАЮЩАЯ КНОПКА СРАВНЕНИЯ -->
+<div class="compare-fab" id="compareFab" onclick="openCompare()" style="display:none;">
+  <span>⚖️</span>
+  <b id="compareCount">0</b>
+</div>
+
+<!-- МОДАЛКА СРАВНЕНИЯ -->
+<div class="modal-bg" id="compareModal">
+  <div class="modal modal-wide">
+    <div class="modal-head">
+      <h2>⚖️ Сравнение товаров</h2>
+      <button class="modal-x" onclick="closeCompare()">✕</button>
+    </div>
+    <div id="compareTable"></div>
+  </div>
+</div>
+
+<nav class="mobile-bottom-bar" id="mobileBar"></nav>
+
+<script src="js/products.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/profile.js"></script>
+
+</body>
+</html>

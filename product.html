@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+<meta name="theme-color" content="#1a1d29">
+<title>Товар — Климат Комфорт</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">🔥 Климат <span>Комфорт</span></div>
+  <div class="nav-links" id="navLinks"></div>
+</header>
+
+<!-- Кнопка "назад" -->
+<div class="product-back-wrap">
+  <button class="product-back" onclick="history.back()">
+    ← Назад в каталог
+  </button>
+</div>
+
+<!-- Содержимое товара -->
+<div class="product-page" id="productPage">
+  <div class="empty">Загрузка...</div>
+</div>
+
+<!-- ПОХОЖИЕ ТОВАРЫ -->
+<div class="similar-section" id="similarSection" style="display:none;">
+  <h2 class="similar-title">🔥 Похожие товары</h2>
+  <div class="products" id="similarGrid"></div>
+</div>
+
+<nav class="mobile-bottom-bar" id="mobileBar"></nav>
+
+<script src="js/products.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/product.js"></script>
+<script src="js/profile.js"></script>
+
+</body>
+</html>
